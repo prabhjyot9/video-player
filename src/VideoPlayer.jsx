@@ -97,26 +97,39 @@ const VideoPlayer = () => {
   };
 
   return (
-    <div className="video-player-container">
-      <h1 className="video-heading">React Video Player</h1>
-      <input type="file" onChange={handleFileChange} />
-      <p className="duration-text">
-        Duration: {duration.toFixed(2)} seconds
-        {height && width && ` | Height: ${height} pixels, Width: ${width} pixels`}
-      </p>
-      <div className="video-container">
-        <video
-          ref={videoRef}
-          preload="none"
-          width="100%"
-          height="auto"
-          controls
-        />
-        <button className="play-pause-button" onClick={handlePlayPause}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
+    <div className="main-cont">
+      <div className="video-player-container">
+        <h1 className="video-heading">React Video Player</h1>
+        <input type="file" onChange={handleFileChange} />
+        <div className="video-container">
+          <video
+            ref={videoRef}
+            preload="none"
+            width="100%"
+            height="auto"
+            controls
+          />
+          <button className="play-pause-button" onClick={handlePlayPause}>
+            {isPlaying ? "Pause" : "Play"}
+          </button>
+        </div>
+        <div ref={canvasRef} className="waveform-container" />
       </div>
-      <div ref={canvasRef} className="waveform-container" />
+      <div className="metadata-outer-container">
+        <div className="metadata-container">
+          <div className="metadata-inner-container">
+            <p className="duration-text">
+              Duration: {duration.toFixed(2)} seconds
+            <p>
+            {height && width && ` | Height: ${height} pixels`}
+            </p>
+            <p>
+            {height && width && ` | Width: ${width} pixels`}
+            </p>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
